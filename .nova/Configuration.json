@@ -1,8 +1,12 @@
 {
   "eablokker.tabsSidebar.config.customKindGroupsOrder" : [
-    "markdown"
+    "markdown",
+    "python",
+    "plaintext"
   ],
   "eablokker.tabsSidebar.config.customTabOrder" : [
-    "\/Users\/mendicant\/Workspace\/Learning\/College\/lcc0104-redis\/README.md"
+    "\/Users\/mendicant\/Workspace\/Learning\/College\/lcc0104-redis\/README.md",
+    "\/Users\/mendicant\/Workspace\/Learning\/College\/lcc0104-redis\/apple_products.csv",
+    "\/Users\/mendicant\/Workspace\/Learning\/College\/lcc0104-redis\/migrate.py"
   ]
 }
