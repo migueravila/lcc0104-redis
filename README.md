@@ -56,26 +56,23 @@ import csv
 import redis
 
 # Connect to Redis
-redis_host = 'localhost'  # Change this to your Redis server host
-redis_port = 6379         # Change this to your Redis server port
-redis_db = 0              # Change this to your Redis database index
+redis_host = 'localhost'
+redis_port = 6379       
+redis_db = 0             
 
 redis_client = redis.StrictRedis(host=redis_host, port=redis_port, db=redis_db)
 
-# CSV file path
-csv_file_path = 'path/to/your/csvfile.csv'
+csv_file_path = 'apple_products.csv'
 
-# Function to migrate CSV to Redis
 def migrate_csv_to_redis(csv_file_path):
 	with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
 		csv_reader = csv.DictReader(csvfile)
 		for row in csv_reader:
-			product = row['Product']
-			year = row['Year']
-			active = row['Active']
-			description = row['Description']
-
-			# Assuming you want to use a Redis hash for each product
+			product = row['Product Name']
+			year = row['Launch Year']
+			active = row['Status']
+			description = row['What it does?']
+			
 			redis_key = f"product:{product}"
 			redis_client.hset(redis_key, 'Year', year)
 			redis_client.hset(redis_key, 'Active', active)
@@ -83,10 +80,7 @@ def migrate_csv_to_redis(csv_file_path):
 
 if __name__ == "__main__":
 	migrate_csv_to_redis(csv_file_path)
-
 ```
-
-Make sure to customize this script based on your CSV file structure.
 
 ### Step 4: Run the Script
 
@@ -106,12 +100,6 @@ redis-cli
 ```
 
 Replace `your_key` with an actual key from your dataset.
-
-### Step 6: Optimize for Redis Data Structures
-
-Depending on your use case, you might want to optimize the data structure in Redis. For example, you could use sets, lists, or other Redis data types based on your specific requirements.
-
-Remember to tailor the process to fit your particular use case and dataset structure. Additionally, be mindful of data types, serialization, and any specific requirements for your application.
 
 ## CRUD Operations
 
@@ -154,5 +142,3 @@ DEL product:iPad
 ```
 
 This command deletes the entire key and its associated hash, effectively removing the product "iPad" from the database.
-
-These are basic examples, and Redis offers a wide range of commands and features for more advanced use cases. Additionally, in a real-world application, you would likely perform these operations programmatically using a programming language and a Redis client library, as opposed to directly using the Redis CLI. The Python script provided earlier is an example of how you might do this programmatically.
